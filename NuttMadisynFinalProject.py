@@ -63,18 +63,20 @@ class CustomerInfo(tk.Tk):
         createLabel(self, "Customer Information", 20).pack(pady=5)
 
         createLabel(self, "First Name:")
-        self.firstName = createEntry(self)
+        self.firstName = createEntry(self)#variable to store first name
 
         createLabel(self, "Last Name:")
-        self.lastName = createEntry(self)
+        self.lastName = createEntry(self)#variable to store last name
 
         createLabel(self, "Email:")
-        self.email = createEntry(self)
+        self.email = createEntry(self)#variable to store email
 
-        createLabel(self, "Phone:")
+        createLabel(self, "Phone:")#variable to store phone number
         self.phone = createEntry(self)
+
 #Button to prcoceed to next window, using the callback funtion next
         createButton(self, "Next", self.next).pack(pady=5)
+
 #Exit button, using the callback funtion exit
         createButton(self, "Exit", self.exit).pack(pady=5)
 
@@ -90,9 +92,9 @@ class CustomerInfo(tk.Tk):
             messagebox.showwarning("Missing information", "Please fill all fields")
             return
 
-        self.customerName = firstName + lastName
-        self.customerEmail = email
-        self.customerPhone = phone
+        self.customerName = firstName + lastName#variable to store customer name combining first and last name
+        self.customerEmail = email#variable to store customer email
+        self.customerPhone = phone#variable to store customer phone number
         
 #Close current window and opens next window
         self.withdraw()
@@ -101,16 +103,16 @@ class CustomerInfo(tk.Tk):
 
 #Funtion for exit button. Stops program and closes window
     def exit(self):
-        self.quit()
-        self.destroy()
+        self.quit()#end program
+        self.destroy()#close window
         
 #Class to create second window
 class ItemInfo(tk.Toplevel):
     def __init__(self, customerName, email, phone):
         super().__init__()
 
-        self.geometry("500x700")
-        self.title("Custom Order Form")
+        self.geometry("500x700")#set window size
+        self.title("Custom Order Form")#create window title
 
 #Add product pictures and print error if it cannot be loaded
         try:
@@ -126,24 +128,24 @@ class ItemInfo(tk.Toplevel):
         createLabel(self, "Select item").pack(pady=5)
 
 #List of avaliable products
-        products = ["Brontosaurus", "T-rex", "Stegosaurus"]
-        self.product = tk.StringVar()
-        self.product.set("Select")
+        products = ["Brontosaurus", "T-rex", "Stegosaurus"]#list to store products
+        self.product = tk.StringVar()#variable to store product
+        self.product.set("Select")#set default to Select
         createDrop(self, self.product, products).pack()
 
         createLabel(self, "Select primary color").pack(pady=5)
 #List of color options for main color
-        primary = ["Blue", "Green", "Pink", "Purple", "Orange", "Red"]
-        self.prime = tk.StringVar()
-        self.prime.set("Select")
+        primary = ["Blue", "Green", "Pink", "Purple", "Orange", "Red"]#list to store primary colors
+        self.prime = tk.StringVar()#variable to store primary color
+        self.prime.set("Select")#set default to Select
         createDrop(self, self.prime, primary).pack()
 
         createLabel(self, "Select secondary color").pack(pady=5)
 
 #List of color options for secondary color
         secondary = ["Blue", "Green", "Pink", "Purple", "Orange", "Red"]
-        self.sec = tk.StringVar()
-        self.sec.set("Select")
+        self.sec = tk.StringVar()#variable to store secondary color
+        self.sec.set("Select")#set default to Select
         createDrop(self, self.sec, secondary).pack()
 
 #Button to add item to order using the callback function createItem
@@ -162,11 +164,12 @@ class ItemInfo(tk.Toplevel):
         self.orderListbox = tk.Listbox(self)
         self.orderListbox.pack(pady=10, padx=20)
 
-#Function to create an item using user selections    
+#Function to create an item using user selections
+#Variables are collected from option menu selections
     def createItem(self):
-        product = self.product.get()
-        primary = self.prime.get()
-        secondary = self.sec.get()
+        product = self.product.get()#variable to store product selection
+        primary = self.prime.get()#variable to store primary color
+        secondary = self.sec.get()#variable to store secondary color
 
 #Input validation. Prevents an item from being added if all slections are not made
         if product == "Select" or primary == "Select" or secondary == "Select":
