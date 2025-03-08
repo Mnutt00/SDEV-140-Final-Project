@@ -182,7 +182,7 @@ class ItemInfo(tk.Toplevel):
 #Function for finish button, ensures at least one item has been added
     def finish(self):
         if not self.order:
-            messagebox.showwarning("No items were added", "Please add an item to place an order", "Ensure all selections have been made")
+            messagebox.showwarning("No items were added", "Please add an item to place an order and ensure all selections have been made")
             return
 
 #Create an empty string for the order summary
